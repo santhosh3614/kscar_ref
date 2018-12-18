@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/txtDriver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:drawableLeft="@drawable/book_driver"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/book_diriver"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/txtPaymentHistoy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:drawableLeft="@drawable/booking_history"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/payment_history" />
+
+
+        <TextView
+            android:id="@+id/txtSupport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:drawableLeft="@drawable/support"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/support" />
+
+        <TextView
+            android:id="@+id/txtTermAndCond"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:drawableLeft="@drawable/terms_conditions"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/term_and_condition" />
+
+
+        <TextView
+            android:id="@+id/txtRegisterCar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:drawableLeft="@drawable/register_your_car"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/register_your_car"
+            android:visibility="gone" />
+
+
+        <TextView
+            android:id="@+id/txtLogOut"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp"
+            android:drawableLeft="@drawable/logout"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:padding="@dimen/_5sdp"
+            android:text="@string/logout"
+            android:visibility="gone" />
+
+
+    </LinearLayout>
+</ScrollView>
