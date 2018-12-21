@@ -4,13 +4,18 @@ import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kscar.R;
 import com.kscar.activities.MainActivity;
+import com.kscar.adapter.PaymentHistoryAdapter;
 import com.kscar.prefrences.SessionManager;
+
+import java.util.ArrayList;
 
 import dmax.dialog.SpotsDialog;
 
@@ -24,10 +29,14 @@ public class PaymetHistoryFragment extends BaseFragment {
         PaymetHistoryFragment paymetHistoryFragment = new PaymetHistoryFragment();
         return paymetHistoryFragment;
     }
+
     public static String TAG = PaymetHistoryFragment.class.getSimpleName();
+
     private MainActivity mainActivity;
     private SessionManager sessionManager;
     private AlertDialog progressDialog;
+    private RecyclerView rvPaymentHistory;
+    private ArrayList<String> payments = new ArrayList<>();
 
     @Nullable
     @Override
@@ -39,24 +48,31 @@ public class PaymetHistoryFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        rvPaymentHistory = view.findViewById(R.id.rvPaymentHistory);
         try {
             init();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     @Override
     public void init() {
         mainActivity = (MainActivity) getActivity();
         sessionManager = new SessionManager(mainActivity);
+        rvPaymentHistory.setLayoutManager(new LinearLayoutManager(mainActivity));
         progressDialog = new SpotsDialog(getContext(), R.style.Custom);
         getPayment();
-      }
+     }
 
     private void getPayment() {
-        progressDialog.show();
-
+//        progressDialog.show();
+        for (int i = 0; i < 8; i++) {
+            payments.add("name");
+         }
+        PaymentHistoryAdapter paymentHistoryAdapter = new PaymentHistoryAdapter(mainActivity, payments, (v, pos) -> {
+            Bundle bundle = new Bundle();
+            mainActivity.replaceFragmenr(MyProfileFragment.getInstance(bundle), MyProfileFragment.TAG);
+        });
+        rvPaymentHistory.setAdapter(paymentHistoryAdapter);
     }
-
 }

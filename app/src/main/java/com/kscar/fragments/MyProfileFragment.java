@@ -37,8 +37,9 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
     private AlertDialog progressDialog;
     private MainActivity mainActivity;
 
-    public static MyProfileFragment getInstance() {
+    public static MyProfileFragment getInstance(Bundle bundle) {
         MyProfileFragment myProfileFragment = new MyProfileFragment();
+        myProfileFragment.setArguments(bundle);
         return myProfileFragment;
     }
 
@@ -69,7 +70,7 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
         mainActivity = (MainActivity) getActivity();
         sessionManager = new SessionManager(mainActivity);
         progressDialog = new SpotsDialog(getContext(), R.style.Custom);
-        getProfile();
+//        getProfile();
     }
 
     private void getProfile() {
@@ -78,7 +79,7 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
         map.put("iDriverId", sessionManager.getUserId());
         Call callOnlineOffline = WsFactory.profile(map);
         WsUtils.getReponse(callOnlineOffline, StaticUtils.REQUEST_PROFILE, this);
-    }
+     }
 
     @Override
     public void successResponse(Object response, int code) {

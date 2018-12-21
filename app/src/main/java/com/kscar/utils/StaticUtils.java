@@ -39,9 +39,8 @@ public class StaticUtils {
     public static final int REQUEST_CAR_CATEGORY = 5006;
     public static final int REQUEST_ONLINE_OFFLINE = 5007;
     public static final int REQUEST_PROFILE = 5008;
-
-
-
+    public static final int REQUEST_STATE_LIST = 5007;
+    public static final int REQUEST_CITY_LIST = 5008;
 
     public static void showSnakBar(Context context, ViewGroup viewGroup, String message) {
         Snackbar mSnackBar = Snackbar.make(viewGroup, message, Snackbar.LENGTH_LONG);

@@ -7,12 +7,10 @@ import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.kscar.R;
 import com.kscar.fragments.MyProfileFragment;
 import com.kscar.fragments.OnlieOffLineFragment;
 import com.kscar.fragments.PaymetHistoryFragment;
-
 
 public class MainActivity extends BaseActivity {
 
@@ -27,9 +25,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         try {
             initComponents();
-        } catch (Exception e) {
+         } catch (Exception e) {
             e.printStackTrace();
-        }
+         }
     }
 
     @Override
@@ -51,40 +49,31 @@ public class MainActivity extends BaseActivity {
         llProfie.setOnClickListener(v -> {
             closeDrawer();
             Bundle bundle = new Bundle();
-            replaceFragmenr(MyProfileFragment.getInstance(), MyProfileFragment.TAG);
+            replaceFragmenr(OnlieOffLineFragment.getInstance(bundle), OnlieOffLineFragment.TAG);
         });
         try {
             defaultCall();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void defaultCall() {
-
         txtPaymentHistoy.setOnClickListener(v -> {
+            closeDrawer();
             replaceFragmenr(PaymetHistoryFragment.getInstance(), PaymetHistoryFragment.TAG);
         });
-
-
         txtSupport.setOnClickListener(v -> {
-
         });
-
-
         txtTermAndCond.setOnClickListener(v -> {
-
         });
-
 
         txtLogOut.setOnClickListener(v -> {
+            closeDrawer();
 
         });
-
-
         Bundle bundle = new Bundle();
-        replaceFragmenr(OnlieOffLineFragment.getInstance(bundle), OnlieOffLineFragment.TAG);
+        replaceFragmenr(MyProfileFragment.getInstance(bundle), MyProfileFragment.TAG);
     }
 
     @Override

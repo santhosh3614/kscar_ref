@@ -51,6 +51,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
     private ImageView img1, img2, img3;
     private int id;
     private TextView txtFileName;
+    private TextView txtState, txtCity;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +71,18 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_CAR_CATEGORY, this);
     }
 
+    private void getStateList() {
+        progressDialog.show();
+        Call loginWsCall = WsFactory.getCarCategory();
+        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_STATE_LIST, this);
+    }
+
+    private void getCityList() {
+        progressDialog.show();
+        Call loginWsCall = WsFactory.getCarCategory();
+        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_CITY_LIST, this);
+    }
+
 
     @Override
     public void initComponents() {
@@ -80,15 +93,39 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         edtCarNo = findViewById(R.id.edtCarNo);
         edtCarModel = findViewById(R.id.edtCarModel);
         edtMobile = findViewById(R.id.edtMobile);
-        edtCity = findViewById(R.id.edtCity);
         edtAddress = findViewById(R.id.edtAddress);
         txtSelectCarId = findViewById(R.id.txtSelectCarId);
         edtLicenceNo = findViewById(R.id.edtLicenceNo);
         txtUpload = findViewById(R.id.txtUpload);
         txtFileName = findViewById(R.id.txtFileName);
+        txtState = findViewById(R.id.txtState);
+        txtCity = findViewById(R.id.txtCity);
         img1 = findViewById(R.id.img1);
         img2 = findViewById(R.id.img2);
         img3 = findViewById(R.id.img3);
+
+        txtState.setOnClickListener(v -> {
+            progressDialog.show();
+
+          /*  AlertDialog.Builder mBuilder = new AlertDialog.Builder(CarSignUpActivity.this);
+            mBuilder.setTitle("Choose an item");
+            mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    mResult.setText(listItems[i]);
+                    dialogInterface.dismiss();
+                }
+            });
+
+            AlertDialog mDialog = mBuilder.create();
+            mDialog.show();*/
+
+
+        });
+        txtCity.setOnClickListener(v -> {
+
+        });
+
 
         img1.setOnClickListener(v -> {
             id = img1.getId();
@@ -180,7 +217,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         txtSubmit.setOnClickListener(v -> {
             String carNo = edtCarNo.getText().toString().trim();
             String mobile = edtMobile.getText().toString().trim();
-            String city = edtCity.getText().toString().trim();
+            String city = "sd";
             String carModel = edtCarModel.getText().toString().trim();
             String address = edtAddress.getText().toString().trim();
             String licenceNo = edtLicenceNo.getText().toString().trim();
@@ -332,6 +369,15 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                     txtSelectCarId.setText(responseDatum.getVCar());
                     carId = responseDatum.getICarCetegoryId() + "";
                 });
+                break;
+            case StaticUtils.REQUEST_STATE_LIST:
+                break;
+
+            case StaticUtils.REQUEST_CITY_LIST:
+                break;
+
+
+            default:
                 break;
         }
     }

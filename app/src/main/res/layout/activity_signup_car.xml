@@ -55,6 +55,27 @@
 
 
         <EditText
+            android:id="@+id/edtUserName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/bg_edit_text"
+            android:drawableLeft="@drawable/user"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/opensans_regular"
+            android:gravity="center_vertical"
+            android:hint="User Name"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/_10sdp"
+            android:textColor="@color/gray_text_color"
+            android:textColorHint="@color/gray_text_color"
+            android:textSize="16sp" />
+
+
+        <EditText
             android:id="@+id/edtCarNo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,8 +156,8 @@
             android:textSize="16sp" />
 
 
-        <EditText
-            android:id="@+id/edtCity"
+        <TextView
+            android:id="@+id/txtState"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_8sdp"
@@ -146,10 +167,32 @@
             android:background="@drawable/bg_edit_text"
             android:drawableLeft="@drawable/state"
             android:drawablePadding="@dimen/_10sdp"
+            android:drawableRight="@drawable/right_arrow"
             android:fontFamily="@font/opensans_regular"
-            android:hint="City"
             android:inputType="textEmailAddress"
             android:padding="@dimen/_10sdp"
+            android:text="@string/select_car"
+            android:textColor="@color/gray_text_color"
+            android:textColorHint="@color/gray_text_color"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/txtCity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:layout_marginLeft="@dimen/_20sdp"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@drawable/bg_edit_text"
+            android:drawableLeft="@drawable/state"
+            android:drawablePadding="@dimen/_10sdp"
+            android:drawableRight="@drawable/right_arrow"
+            android:fontFamily="@font/opensans_regular"
+            android:inputType="textEmailAddress"
+            android:padding="@dimen/_10sdp"
+            android:text="@string/select_city"
             android:textColor="@color/gray_text_color"
             android:textColorHint="@color/gray_text_color"
             android:textSize="16sp" />
@@ -217,8 +260,8 @@
             android:orientation="horizontal">
 
             <RelativeLayout
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:background="@drawable/bg_plus_image">
 
                 <ImageView
@@ -241,8 +284,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/bg_plus_image">
 
@@ -264,8 +307,8 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/bg_plus_image">
 
@@ -286,6 +329,29 @@
 
             </RelativeLayout>
 
+
+            <RelativeLayout
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/bg_plus_image">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/ic_add" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY"
+                    app:riv_corner_radius="@dimen/_15sdp"
+                    app:riv_mutate_background="true"
+                    app:riv_tile_mode="repeat" />
+
+            </RelativeLayout>
 
         </LinearLayout>
 
