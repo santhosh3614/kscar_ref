@@ -29,7 +29,7 @@ import retrofit2.Call;
  * Created by SONI on 12/14/2018.
  */
 
-public class MyProfileFragment extends BaseFragment implements WsResponse {
+public class PaymentDetailsFragment extends BaseFragment implements WsResponse {
 
     private ImageView imgProfile;
     private TextView txtName, txtDate;
@@ -37,13 +37,13 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
     private AlertDialog progressDialog;
     private MainActivity mainActivity;
 
-    public static MyProfileFragment getInstance(Bundle bundle) {
-        MyProfileFragment myProfileFragment = new MyProfileFragment();
+    public static PaymentDetailsFragment getInstance(Bundle bundle) {
+        PaymentDetailsFragment myProfileFragment = new PaymentDetailsFragment();
         myProfileFragment.setArguments(bundle);
         return myProfileFragment;
     }
 
-    public static String TAG = MyProfileFragment.class.getSimpleName();
+    public static String TAG = PaymentDetailsFragment.class.getSimpleName();
 
     @Nullable
     @Override
@@ -58,6 +58,7 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
         imgProfile = view.findViewById(R.id.imgProfile);
         txtName = view.findViewById(R.id.txtName);
         txtDate = view.findViewById(R.id.txtDate);
+        setHeader();
         try {
             init();
         } catch (Exception e) {
@@ -65,20 +66,20 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
         }
     }
 
+    private void setHeader() {
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.imgBack.setVisibility(View.GONE);
+        mainActivity.imgMenu.setVisibility(View.VISIBLE);
+        mainActivity.txtTitle.setText("Payment Details");
+    }
+
+
     @Override
     public void init() {
         mainActivity = (MainActivity) getActivity();
         sessionManager = new SessionManager(mainActivity);
         progressDialog = new SpotsDialog(getContext(), R.style.Custom);
-//       getProfile();
-        setHeader();
-    }
-
-    private void setHeader() {
-        mainActivity = (MainActivity) getActivity();
-        mainActivity.imgBack.setVisibility(View.VISIBLE);
-        mainActivity.imgMenu.setVisibility(View.GONE);
-        mainActivity.txtTitle.setText("My Profile");
+//        getProfile();
     }
 
     private void getProfile() {

@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.kscar.R;
 import com.kscar.fragments.MyProfileFragment;
 import com.kscar.fragments.OnlieOffLineFragment;
@@ -16,8 +17,9 @@ public class MainActivity extends BaseActivity {
 
     private LinearLayout llProfie;
     private DrawerLayout drawer;
-    private ImageView imgMenu, imgProfile;
+    public ImageView imgMenu, imgNotification, imgBack;
     private TextView txtPaymentHistoy, txtSupport, txtTermAndCond, txtRegisterCar, txtLogOut;
+    public TextView txtTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +27,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
         try {
             initComponents();
-         } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
-         }
+        }
     }
 
     @Override
@@ -35,17 +37,19 @@ public class MainActivity extends BaseActivity {
         llProfie = findViewById(R.id.llProfie);
         drawer = findViewById(R.id.drawer_layout);
         imgMenu = findViewById(R.id.imgMenu);
-        imgProfile = findViewById(R.id.imgProfile);
+        imgNotification = findViewById(R.id.imgNotification);
+        imgBack = findViewById(R.id.imgBack);
+        imgNotification = findViewById(R.id.imgNotification);
         txtPaymentHistoy = findViewById(R.id.txtPaymentHistoy);
         txtSupport = findViewById(R.id.txtSupport);
         txtTermAndCond = findViewById(R.id.txtTermAndCond);
         txtRegisterCar = findViewById(R.id.txtRegisterCar);
         txtLogOut = findViewById(R.id.txtLogOut);
+        txtTitle = findViewById(R.id.txtTitle);
 
         imgMenu.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.START);
         });
-
         llProfie.setOnClickListener(v -> {
             closeDrawer();
             Bundle bundle = new Bundle();
@@ -70,11 +74,11 @@ public class MainActivity extends BaseActivity {
 
         txtLogOut.setOnClickListener(v -> {
             closeDrawer();
-
         });
         Bundle bundle = new Bundle();
         replaceFragmenr(MyProfileFragment.getInstance(bundle), MyProfileFragment.TAG);
     }
+
 
     @Override
     public void onBackPressed() {

@@ -55,7 +55,7 @@ public class PaymetHistoryFragment extends BaseFragment {
         rvPaymentHistory = view.findViewById(R.id.rvPaymentHistory);
         try {
             init();
-          } catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -63,11 +63,19 @@ public class PaymetHistoryFragment extends BaseFragment {
     @Override
     public void init() {
         mainActivity = (MainActivity) getActivity();
-
         sessionManager = new SessionManager(mainActivity);
         rvPaymentHistory.setLayoutManager(new LinearLayoutManager(mainActivity));
         progressDialog = new SpotsDialog(getContext(), R.style.Custom);
+        setHeader();
         getPayment();
+    }
+
+
+    private void setHeader() {
+        mainActivity = (MainActivity) getActivity();
+        mainActivity.imgBack.setVisibility(View.VISIBLE);
+        mainActivity.imgMenu.setVisibility(View.GONE);
+        mainActivity.txtTitle.setText("Payment History");
     }
 
     private void getPayment() {
