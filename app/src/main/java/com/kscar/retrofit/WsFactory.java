@@ -1,8 +1,10 @@
 package com.kscar.retrofit;
 
 import com.kscar.models.CarCategoryModel;
+import com.kscar.models.CityListModel;
 import com.kscar.models.OnlineOffline;
 import com.kscar.models.SignUpModel;
+import com.kscar.models.StateModel;
 
 import java.util.Map;
 
@@ -70,6 +72,19 @@ public class WsFactory {
     public static Call profile(Map<String, String> map) {
         ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         Call<SignUpModel> onlineOfflineCall = apiService.getProfile(map);
+        return onlineOfflineCall;
+    }
+
+
+    public static Call getSatate() {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<StateModel> onlineOfflineCall = apiService.stateList();
+        return onlineOfflineCall;
+    }
+
+    public static Call getCityState(Map<String, String> map) {
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<CityListModel> onlineOfflineCall = apiService.cityList(map);
         return onlineOfflineCall;
     }
 

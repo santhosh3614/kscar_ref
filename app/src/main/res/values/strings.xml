@@ -70,6 +70,7 @@
     <string name="select_car">Select State</string>
     <string name="select_city">Select City</string>
     <string name="enjoy_ride_please_end_when_you_have_completed_n_ride_also_take_care_extra_change_on_payment_recipe">Enjoy ride, please end when you have completed   Ride ,also take care extra change on payment recipe</string>
+    <string name="city_not_available">City not available</string>
 
     <string-array name="Qnty">
         <item>1</item>

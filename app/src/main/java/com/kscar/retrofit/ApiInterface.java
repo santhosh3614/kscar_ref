@@ -2,8 +2,10 @@ package com.kscar.retrofit;
 
 
 import com.kscar.models.CarCategoryModel;
+import com.kscar.models.CityListModel;
 import com.kscar.models.OnlineOffline;
 import com.kscar.models.SignUpModel;
+import com.kscar.models.StateModel;
 
 import java.util.Map;
 
@@ -112,8 +114,11 @@ private void requestUploadSurvey() {
     @POST("oauth/getdriverdetail")
     Call<SignUpModel> getProfile(@FieldMap Map<String, String> fields);
 
+    @GET("oauth/getstatelist")
+    Call<StateModel> stateList();
 
-
-
+    @FormUrlEncoded
+    @POST("oauth/getcitylist")
+    Call<CityListModel> cityList(@FieldMap Map<String, String> fields);
 
 }

@@ -17,8 +17,12 @@ import android.widget.Toast;
 
 import com.kscar.R;
 import com.kscar.adapter.CarCategoryAdapter;
+import com.kscar.adapter.CityAdapter;
+import com.kscar.adapter.StateAdapter;
 import com.kscar.listeners.RvClickListeners;
 import com.kscar.models.CarCategoryModel;
+import com.kscar.models.CityListModel;
+import com.kscar.models.StateModel;
 
 import java.util.Calendar;
 import java.util.List;
@@ -161,6 +165,52 @@ public class PoupUtils {
                 });
 
     }
+
+    public static void showState(Activity activity, String message,
+                                 List<StateModel.ResponseDatum> responseData,
+                                 RvClickListeners rvClickListeners) {
+        final Dialog dialog = new Dialog(activity, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.black_tran_60);
+        dialog.setContentView(R.layout.layout_state);
+        RecyclerView rvState = dialog.findViewById(R.id.rvState);
+
+        rvState.setLayoutManager(new LinearLayoutManager(activity));
+        StateAdapter carCategoryAdapter = new StateAdapter(activity, responseData, (v, pos) -> {
+            rvClickListeners.onItemclick(v, pos);
+            dialog.cancel();
+        });
+        rvState.setAdapter(carCategoryAdapter);
+        TextView txtTitle = dialog.findViewById(R.id.txtTitle);
+        txtTitle.setText(message);
+        dialog.show();
+    }
+
+    public static void showCity(Activity activity, String message,
+                                List<CityListModel.ResponseDatum> responseData,
+                                RvClickListeners rvClickListeners) {
+        final Dialog dialog = new Dialog(activity, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.getWindow().setBackgroundDrawableResource(R.color.black_tran_60);
+        dialog.setContentView(R.layout.layout_category_car);
+        TextView txtCityNa = dialog.findViewById(R.id.txtCityNa);
+        RecyclerView rvCarList = dialog.findViewById(R.id.rvCarList);
+        rvCarList.setLayoutManager(new LinearLayoutManager(activity));
+        TextView txtTitle = dialog.findViewById(R.id.txtTitle);
+        txtTitle.setText(message);
+        if (responseData.size() > 0) {
+            txtCityNa.setVisibility(View.GONE);
+            CityAdapter carCategoryAdapter = new CityAdapter(activity, responseData, (v, pos) -> {
+                rvClickListeners.onItemclick(v, pos);
+                dialog.cancel();
+            });
+            rvCarList.setAdapter(carCategoryAdapter);
+        } else {
+            txtCityNa.setVisibility(View.VISIBLE);
+        }
+        dialog.show();
+    }
+
 
 }
 

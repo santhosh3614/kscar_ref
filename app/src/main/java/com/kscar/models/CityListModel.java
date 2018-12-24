@@ -2,9 +2,14 @@ package com.kscar.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
 import java.util.List;
 
-public class StateListModel {
+/**
+ * Created by SONI on 12/23/2018.
+ */
+
+public class CityListModel {
 
     @SerializedName("responseCode")
     @Expose
@@ -40,29 +45,41 @@ public class StateListModel {
         this.responseData = responseData;
     }
 
+
     public static class ResponseDatum {
 
-        @SerializedName("iStatesId")
+        @SerializedName("iStateId")
         @Expose
-        private String iStatesId;
-        @SerializedName("vStateName")
+        private String iStateId;
+        @SerializedName("iCityId")
         @Expose
-        private String vStateName;
+        private String iCityId;
+        @SerializedName("vCityName")
+        @Expose
+        private String vCityName;
 
-        public String getIStatesId() {
-            return iStatesId;
+        public String getIStateId() {
+            return iStateId;
         }
 
-        public void setIStatesId(String iStatesId) {
-            this.iStatesId = iStatesId;
+        public void setIStateId(String iStateId) {
+            this.iStateId = iStateId;
         }
 
-        public String getVStateName() {
-            return vStateName;
+        public String getICityId() {
+            return iCityId;
         }
 
-        public void setVStateName(String vStateName) {
-            this.vStateName = vStateName;
+        public void setICityId(String iCityId) {
+            this.iCityId = iCityId;
+        }
+
+        public String getVCityName() {
+            return vCityName;
+        }
+
+        public void setVCityName(String vCityName) {
+            this.vCityName = vCityName;
         }
 
     }

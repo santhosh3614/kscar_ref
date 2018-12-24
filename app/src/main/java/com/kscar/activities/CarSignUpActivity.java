@@ -13,10 +13,11 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.kscar.R;
 import com.kscar.models.CarCategoryModel;
+import com.kscar.models.CityListModel;
 import com.kscar.models.SignUpModel;
+import com.kscar.models.StateModel;
 import com.kscar.prefrences.SessionManager;
 import com.kscar.retrofit.WsFactory;
 import com.kscar.retrofit.WsResponse;
@@ -24,9 +25,9 @@ import com.kscar.retrofit.WsUtils;
 import com.kscar.utils.PermisionUtils;
 import com.kscar.utils.PoupUtils;
 import com.kscar.utils.StaticUtils;
-
 import java.util.ArrayList;
-
+import java.util.HashMap;
+import java.util.Map;
 import dmax.dialog.SpotsDialog;
 import retrofit2.Call;
 
@@ -52,6 +53,8 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
     private int id;
     private TextView txtFileName;
     private TextView txtState, txtCity;
+    private String stateId = "0";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -64,23 +67,24 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         }
     }
 
-
     private void getCarCategory() {
         progressDialog.show();
-        Call loginWsCall = WsFactory.getCarCategory();
-        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_CAR_CATEGORY, this);
+        Call sateList = WsFactory.getCarCategory();
+        WsUtils.getReponse(sateList, StaticUtils.REQUEST_CAR_CATEGORY, this);
     }
 
     private void getStateList() {
         progressDialog.show();
-        Call loginWsCall = WsFactory.getCarCategory();
-        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_STATE_LIST, this);
+        Map<String, String> map = new HashMap<>();
+        map.put("iStatesId", stateId);
+        Call cityListModel = WsFactory.getCityState(map);
+        WsUtils.getReponse(cityListModel, StaticUtils.REQUEST_STATE_LIST, this);
     }
 
     private void getCityList() {
         progressDialog.show();
         Call loginWsCall = WsFactory.getCarCategory();
-        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_CITY_LIST, this);
+        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_STATE_CITY, this);
     }
 
 
@@ -105,26 +109,11 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         img3 = findViewById(R.id.img3);
 
         txtState.setOnClickListener(v -> {
-//            progressDialog.show();
-          /*  AlertDialog.Builder mBuilder = new AlertDialog.Builder(CarSignUpActivity.this);
-            mBuilder.setTitle("Choose an item");
-            mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    mResult.setText(listItems[i]);
-                    dialogInterface.dismiss();
-                }
-            });
-
-            AlertDialog mDialog = mBuilder.create();
-            mDialog.show();*/
-
-
+            getStateList();
         });
         txtCity.setOnClickListener(v -> {
-
+            getCityList();
         });
-
 
         img1.setOnClickListener(v -> {
             id = img1.getId();
@@ -274,6 +263,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         });
     }
 
+
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent, REQUEST_CAMERA);
@@ -370,9 +360,23 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                 });
                 break;
             case StaticUtils.REQUEST_STATE_LIST:
+                StateModel stateModel = (StateModel) response;
+                if (stateModel != null) {
+                    PoupUtils.showState(CarSignUpActivity.this, "Select State", stateModel.getResponseData(), (view, pos) -> {
+                        StateModel.ResponseDatum responseDatum = stateModel.getResponseData().get(pos);
+                        stateId = responseDatum.getIStatesId();
+                        txtState.setText(responseDatum.getVStateName());
+                    });
+                }
                 break;
-
-            case StaticUtils.REQUEST_CITY_LIST:
+            case StaticUtils.REQUEST_STATE_CITY:
+                CityListModel cityListModel = (CityListModel) response;
+                if (cityListModel != null) {
+                    PoupUtils.showCity(CarSignUpActivity.this, "Select City", cityListModel.getResponseData(), (view, pos) -> {
+                        CityListModel.ResponseDatum responseDatum = cityListModel.getResponseData().get(pos);
+                        txtCity.setText(responseDatum.getVCityName());
+                    });
+                }
                 break;
 
 
