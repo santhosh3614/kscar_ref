@@ -42,9 +42,10 @@
             android:layout_marginLeft="@dimen/_20sdp"
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_7sdp"
+            android:drawableLeft="@drawable/car_icon"
             android:background="@drawable/bg_edit_text"
             android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/right_arrow"
+            android:drawableRight="@drawable/arrow"
             android:fontFamily="@font/opensans_regular"
             android:gravity="center_vertical"
             android:hint="@string/select_car_type"
@@ -84,7 +85,7 @@
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/user"
+            android:drawableLeft="@drawable/car_icon"
             android:drawablePadding="@dimen/_10sdp"
             android:fontFamily="@font/opensans_regular"
             android:gravity="center_vertical"
@@ -104,7 +105,7 @@
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/email"
+            android:drawableLeft="@drawable/car_icon"
             android:drawablePadding="@dimen/_10sdp"
             android:fontFamily="@font/opensans_regular"
             android:gravity="center_vertical"
@@ -144,7 +145,7 @@
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/mobile"
+            android:drawableLeft="@drawable/lances"
             android:drawablePadding="@dimen/_10sdp"
             android:fontFamily="@font/opensans_regular"
             android:gravity="center_vertical"
@@ -186,7 +187,7 @@
             android:layout_marginRight="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_8sdp"
             android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/state"
+            android:drawableLeft="@drawable/city"
             android:drawablePadding="@dimen/_10sdp"
             android:drawableRight="@drawable/right_arrow"
             android:fontFamily="@font/opensans_regular"
@@ -268,7 +269,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
+                    android:src="@drawable/add"
+                    />
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/img1"
@@ -293,7 +295,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
+                    android:src="@drawable/add"
+                    />
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/img2"
@@ -316,7 +319,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
+                    android:src="@drawable/add"
+                    />
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/img3"
@@ -340,7 +344,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
+                    android:src="@drawable/add"
+                    />
 
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/img4"
