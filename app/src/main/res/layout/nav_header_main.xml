@@ -11,7 +11,7 @@
         android:layout_height="@dimen/_75sdp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/_40sdp"
-        android:src="@drawable/driver" />
+        android:src="@drawable/profile" />
 
     <RelativeLayout
         android:id="@+id/rlGoForUpdate"

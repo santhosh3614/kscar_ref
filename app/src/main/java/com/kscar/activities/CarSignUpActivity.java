@@ -105,8 +105,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         img3 = findViewById(R.id.img3);
 
         txtState.setOnClickListener(v -> {
-            progressDialog.show();
-
+//            progressDialog.show();
           /*  AlertDialog.Builder mBuilder = new AlertDialog.Builder(CarSignUpActivity.this);
             mBuilder.setTitle("Choose an item");
             mBuilder.setSingleChoiceItems(listItems, -1, new DialogInterface.OnClickListener() {

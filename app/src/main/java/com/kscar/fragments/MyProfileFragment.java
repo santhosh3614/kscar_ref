@@ -42,7 +42,6 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
         myProfileFragment.setArguments(bundle);
         return myProfileFragment;
     }
-
     public static String TAG = MyProfileFragment.class.getSimpleName();
 
     @Nullable
@@ -76,8 +75,8 @@ public class MyProfileFragment extends BaseFragment implements WsResponse {
 
     private void setHeader() {
         mainActivity = (MainActivity) getActivity();
-        mainActivity.imgBack.setVisibility(View.VISIBLE);
-        mainActivity.imgMenu.setVisibility(View.GONE);
+        mainActivity.imgBack.setVisibility(View.GONE);
+        mainActivity.imgMenu.setVisibility(View.VISIBLE);
         mainActivity.txtTitle.setText("My Profile");
     }
 

@@ -73,9 +73,13 @@ public class PaymetHistoryFragment extends BaseFragment {
 
     private void setHeader() {
         mainActivity = (MainActivity) getActivity();
-        mainActivity.imgBack.setVisibility(View.VISIBLE);
-        mainActivity.imgMenu.setVisibility(View.GONE);
+        mainActivity.imgBack.setVisibility(View.GONE);
+        mainActivity.imgMenu.setVisibility(View.VISIBLE);
         mainActivity.txtTitle.setText("Payment History");
+        mainActivity.imgBack.setOnClickListener(v -> {
+            mainActivity.onBackPressed();
+        });
+
     }
 
     private void getPayment() {
@@ -85,7 +89,7 @@ public class PaymetHistoryFragment extends BaseFragment {
         }
         PaymentHistoryAdapter paymentHistoryAdapter = new PaymentHistoryAdapter(mainActivity, payments, (v, pos) -> {
             Bundle bundle = new Bundle();
-            mainActivity.replaceFragmenr(MyProfileFragment.getInstance(bundle), MyProfileFragment.TAG);
+            mainActivity.replaceFragmenr(PaymentDetailsFragment.getInstance(bundle), PaymentDetailsFragment.TAG);
         });
         rvPaymentHistory.setAdapter(paymentHistoryAdapter);
     }

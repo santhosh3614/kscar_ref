@@ -68,11 +68,13 @@ public class PaymentDetailsFragment extends BaseFragment implements WsResponse {
 
     private void setHeader() {
         mainActivity = (MainActivity) getActivity();
-        mainActivity.imgBack.setVisibility(View.GONE);
-        mainActivity.imgMenu.setVisibility(View.VISIBLE);
+        mainActivity.imgBack.setVisibility(View.VISIBLE);
+        mainActivity.imgMenu.setVisibility(View.GONE);
         mainActivity.txtTitle.setText("Payment Details");
+        mainActivity.imgBack.setOnClickListener(v -> {
+            mainActivity.onBackPressed();
+        });
     }
-
 
     @Override
     public void init() {

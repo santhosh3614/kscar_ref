@@ -58,7 +58,7 @@
 
 
         <TextView
-            android:id="@+id/txtRegisterCar"
+            android:id="@+id/txtTrip"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_5sdp"
@@ -66,8 +66,8 @@
             android:drawablePadding="@dimen/_10sdp"
             android:fontFamily="@font/opensans_regular"
             android:padding="@dimen/_5sdp"
-            android:text="@string/register_your_car"
-            android:visibility="gone" />
+            android:text="Trip Start"
+            android:visibility="visible" />
 
 
         <TextView

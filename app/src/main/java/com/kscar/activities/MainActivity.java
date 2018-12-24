@@ -1,6 +1,7 @@
 package com.kscar.activities;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import com.kscar.R;
 import com.kscar.fragments.MyProfileFragment;
 import com.kscar.fragments.OnlieOffLineFragment;
+import com.kscar.fragments.OtpValdateFragment;
 import com.kscar.fragments.PaymetHistoryFragment;
 
 public class MainActivity extends BaseActivity {
@@ -18,8 +20,9 @@ public class MainActivity extends BaseActivity {
     private LinearLayout llProfie;
     private DrawerLayout drawer;
     public ImageView imgMenu, imgNotification, imgBack;
+    public TextView txtTitle, txtTrip;
+
     private TextView txtPaymentHistoy, txtSupport, txtTermAndCond, txtRegisterCar, txtLogOut;
-    public TextView txtTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +46,24 @@ public class MainActivity extends BaseActivity {
         txtPaymentHistoy = findViewById(R.id.txtPaymentHistoy);
         txtSupport = findViewById(R.id.txtSupport);
         txtTermAndCond = findViewById(R.id.txtTermAndCond);
-        txtRegisterCar = findViewById(R.id.txtRegisterCar);
         txtLogOut = findViewById(R.id.txtLogOut);
         txtTitle = findViewById(R.id.txtTitle);
+        txtTrip = findViewById(R.id.txtTrip);
 
         imgMenu.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.START);
         });
         llProfie.setOnClickListener(v -> {
-            closeDrawer();
-            Bundle bundle = new Bundle();
-            replaceFragmenr(OnlieOffLineFragment.getInstance(bundle), OnlieOffLineFragment.TAG);
+            closeNavigation();
+          /*  Bundle bundle = new Bundle();
+            replaceFragmenr(OnlieOffLineFragment.getInstance(bundle), OnlieOffLineFragment.TAG);*/
         });
+
+        txtTrip.setOnClickListener(v -> {
+            closeNavigation();
+            replaceFragmenr(OtpValdateFragment.getInstance(), OtpValdateFragment.TAG);
+        });
+
         try {
             defaultCall();
         } catch (Exception e) {
@@ -64,7 +73,7 @@ public class MainActivity extends BaseActivity {
 
     private void defaultCall() {
         txtPaymentHistoy.setOnClickListener(v -> {
-            closeDrawer();
+            closeNavigation();
             replaceFragmenr(PaymetHistoryFragment.getInstance(), PaymetHistoryFragment.TAG);
         });
         txtSupport.setOnClickListener(v -> {
@@ -73,7 +82,7 @@ public class MainActivity extends BaseActivity {
         });
 
         txtLogOut.setOnClickListener(v -> {
-            closeDrawer();
+            closeNavigation();
         });
         Bundle bundle = new Bundle();
         replaceFragmenr(MyProfileFragment.getInstance(bundle), MyProfileFragment.TAG);
@@ -82,14 +91,18 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
+        closeNavigation();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        int count = fragmentManager.getBackStackEntryCount();
+        String fragmentTag = fragmentManager.getBackStackEntryAt(count - 1).getName();
+        if (fragmentTag.equalsIgnoreCase(MyProfileFragment.TAG)) {
             super.onBackPressed();
+        } else {
+            fragmentManager.popBackStackImmediate();
         }
     }
 
-    private void closeDrawer() {
+    private void closeNavigation() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         }
