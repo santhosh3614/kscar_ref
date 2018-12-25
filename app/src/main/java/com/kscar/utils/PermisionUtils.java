@@ -13,8 +13,6 @@ import android.support.v4.content.ContextCompat;
 public class PermisionUtils {
 
     public static final int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 123;
-
-
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static boolean checkPermission(final Activity context) {
         int currentAPIVersion = Build.VERSION.SDK_INT;
@@ -33,9 +31,9 @@ public class PermisionUtils {
                     });
                     AlertDialog alert = alertBuilder.create();
                     alert.show();
-                } else {
+                 } else {
                     ActivityCompat.requestPermissions(context, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
-                }
+                 }
                 return false;
             } else {
                 return true;
@@ -43,6 +41,6 @@ public class PermisionUtils {
         } else {
             return true;
         }
-    }
+     }
 
 }
