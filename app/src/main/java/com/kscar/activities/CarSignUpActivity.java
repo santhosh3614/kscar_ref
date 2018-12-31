@@ -9,10 +9,12 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.kscar.R;
 import com.kscar.models.CarCategoryModel;
 import com.kscar.models.CityListModel;
@@ -25,10 +27,16 @@ import com.kscar.retrofit.WsUtils;
 import com.kscar.utils.PermisionUtils;
 import com.kscar.utils.PoupUtils;
 import com.kscar.utils.StaticUtils;
+
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
 import dmax.dialog.SpotsDialog;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 
 /**
@@ -49,12 +57,12 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
     private EditText edtCarNo, edtCarModel, edtMobile, edtCity, edtAddress, edtLicenceNo;
     private String carId = "1";
     private ArrayList<String> docImages = new ArrayList<>();
-    private ImageView img1, img2, img3;
+    private ImageView img1, img2, img3, img4;
     private int id;
     private TextView txtFileName;
     private TextView txtState, txtCity;
     private String stateId = "0";
-
+    private EditText edtUserName;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -75,16 +83,16 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
 
     private void getStateList() {
         progressDialog.show();
-        Map<String, String> map = new HashMap<>();
-        map.put("iStatesId", stateId);
-        Call cityListModel = WsFactory.getCityState(map);
-        WsUtils.getReponse(cityListModel, StaticUtils.REQUEST_STATE_LIST, this);
+        Call loginWsCall = WsFactory.getSatate();
+        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_STATE_LIST, this);
     }
 
     private void getCityList() {
         progressDialog.show();
-        Call loginWsCall = WsFactory.getCarCategory();
-        WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_STATE_CITY, this);
+        Map<String, String> map = new HashMap<>();
+        map.put("iStatesId", stateId);
+        Call cityListModel = WsFactory.getCityState(map);
+        WsUtils.getReponse(cityListModel, StaticUtils.REQUEST_STATE_CITY, this);
     }
 
 
@@ -107,10 +115,13 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         img1 = findViewById(R.id.img1);
         img2 = findViewById(R.id.img2);
         img3 = findViewById(R.id.img3);
+        img4 = findViewById(R.id.img4);
+        edtUserName = findViewById(R.id.edtUserName);
 
         txtState.setOnClickListener(v -> {
             getStateList();
         });
+
         txtCity.setOnClickListener(v -> {
             getCityList();
         });
@@ -167,6 +178,24 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
 
         });
 
+        img4.setOnClickListener(v -> {
+            id = img4.getId();
+            PoupUtils.showCameraAndGallery(this, "Choose option",
+                    camera -> {
+                        selectedValue = camera.getTag().toString();
+                        boolean result = PermisionUtils.checkPermission(this);
+                        if (result)
+                            cameraIntent();
+                    },
+                    gallary -> {
+                        selectedValue = gallary.getTag().toString();
+                        boolean result = PermisionUtils.checkPermission(this);
+                        if (result)
+                            galleryIntent();
+                    });
+
+        });
+
         txtUpload.setOnClickListener(v -> {
             id = txtUpload.getId();
             PoupUtils.showCameraAndGallery(this, "Choose option",
@@ -183,6 +212,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                             galleryIntent();
                     });
         });
+
 
         imgProfile.setOnClickListener(v -> {
             PoupUtils.showCameraAndGallery(this, "Choose option",
@@ -203,34 +233,43 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         });
 
         txtSubmit.setOnClickListener(v -> {
+
             String carNo = edtCarNo.getText().toString().trim();
             String mobile = edtMobile.getText().toString().trim();
-            String city = "sd";
             String carModel = edtCarModel.getText().toString().trim();
             String address = edtAddress.getText().toString().trim();
             String licenceNo = edtLicenceNo.getText().toString().trim();
+            String city = txtCity.getText().toString().trim();
+            String state = txtState.getText().toString().trim();
+            String userName = edtUserName.getText().toString().trim();
 
-       /*     if (TextUtils.isEmpty(carId)) {
-                PoupUtils.showAlertDailog(this, "Select Car Type");
+            if (TextUtils.isEmpty(carId)) {
+                PoupUtils.showAlertDailog(this, "Select car type.");
+            } else if (TextUtils.isEmpty(userName)) {
+                PoupUtils.showAlertDailog(this, "Select user name.");
             } else if (TextUtils.isEmpty(carNo)) {
-                PoupUtils.showAlertDailog(this, "Enter car no");
+                PoupUtils.showAlertDailog(this, "Enter car no.");
             } else if (TextUtils.isEmpty(mobile)) {
-                PoupUtils.showAlertDailog(this, "Enter mobile no");
+                PoupUtils.showAlertDailog(this, "Enter mobile no.");
+            } else if (TextUtils.isEmpty(state)) {
+                PoupUtils.showAlertDailog(this, "Please select state.");
             } else if (TextUtils.isEmpty(city)) {
-                PoupUtils.showAlertDailog(this, "Enter city");
+                PoupUtils.showAlertDailog(this, "Enter city.");
             } else if (TextUtils.isEmpty(carModel)) {
-                PoupUtils.showAlertDailog(this, "Enter car model");
+                PoupUtils.showAlertDailog(this, "Enter car model.");
             } else if (TextUtils.isEmpty(address)) {
-                PoupUtils.showAlertDailog(this, "Enter Address");
+                PoupUtils.showAlertDailog(this, "Enter Address.");
             } else if (TextUtils.isEmpty(licenceNo)) {
-                PoupUtils.showAlertDailog(this, "Enter Licence no");
+                PoupUtils.showAlertDailog(this, "Enter Licence no.");
             } else if (docImages.size() < 1) {
-                PoupUtils.showAlertDailog(this, "Selcect One Image");
+                PoupUtils.showAlertDailog(this, "Selcect One Image.");
             } else {
+
                 progressDialog.show();
                 File file = new File(filePath);
                 RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
                 MultipartBody.Part body = MultipartBody.Part.createFormData("vLicenceImage", file.getName(), reqFile);
+
                 RequestBody iCarCetegoryId = RequestBody.create(MediaType.parse("text/plain"), carId);
                 RequestBody vCarNumber = RequestBody.create(MediaType.parse("text/plain"), carNo);
                 RequestBody iCarModel = RequestBody.create(MediaType.parse("text/plain"), carModel);
@@ -238,6 +277,10 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                 RequestBody iDriverContactNo = RequestBody.create(MediaType.parse("text/plain"), mobile);
                 RequestBody txDriverAddress = RequestBody.create(MediaType.parse("text/plain"), address);
                 RequestBody vCity = RequestBody.create(MediaType.parse("text/plain"), city);
+                RequestBody vState = RequestBody.create(MediaType.parse("text/plain"), state);
+                RequestBody txDeviceToken = RequestBody.create(MediaType.parse("text/plain"), "as121adfdas");
+                RequestBody vDriverName = RequestBody.create(MediaType.parse("text/plain"), userName);
+
                 //Uplaod multiple image here:---
                 MultipartBody.Part[] surveyImagesParts = new MultipartBody.Part[docImages.size()];
                 for (int index = 0; index < docImages.size(); index++) {
@@ -246,6 +289,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                     surveyImagesParts[index] = MultipartBody.Part.createFormData("vDocumentImage", fileArray.getName(), docBody);
                 }
                 Map<String, RequestBody> map = new HashMap<>();
+                map.put("vDriverName", vDriverName);
                 map.put("iCarCetegoryId", iCarCetegoryId);
                 map.put("vCarNumber", vCarNumber);
                 map.put("iCarModel", iCarModel);
@@ -253,16 +297,13 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                 map.put("iDriverContactNo", iDriverContactNo);
                 map.put("txDriverAddress", txDriverAddress);
                 map.put("vCity", vCity);
+                map.put("vState", vState);
+                map.put("txDeviceToken", txDeviceToken);
                 Call loginWsCall = WsFactory.signUp(surveyImagesParts, body, map);
                 WsUtils.getReponse(loginWsCall, StaticUtils.REQUEST_SIGN_UP, this);
-            }*/
-            Intent intent = new Intent(CarSignUpActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-            overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
         });
     }
-
 
     private void cameraIntent() {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -281,9 +322,9 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         switch (requestCode) {
             case PermisionUtils.MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    if (selectedValue.equals("Take Photo"))
+                    if (selectedValue.equalsIgnoreCase("Take Photo"))
                         cameraIntent();
-                    else if (selectedValue.equals("Choose from Library"))
+                    else if (selectedValue.equalsIgnoreCase("Choose from Library"))
                         galleryIntent();
                 } else {
                     //code for deny
@@ -316,6 +357,9 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
         } else if (id == R.id.img3) {
             img3.setImageURI(picUri);
             docImages.add(filePath);
+        } else if (id == R.id.img4) {
+            img4.setImageURI(picUri);
+            docImages.add(filePath);
         } else if (id == R.id.txtUpload) {
             String filename = filePath.substring(filePath.lastIndexOf("/") + 1);
             txtFileName.setText(filename);
@@ -334,7 +378,10 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
             img2.setImageBitmap(thumbnail);
             docImages.add(filePath);
         } else if (id == R.id.img3) {
-            img2.setImageBitmap(thumbnail);
+            img3.setImageBitmap(thumbnail);
+            docImages.add(filePath);
+        } else if (id == R.id.img4) {
+            img4.setImageBitmap(thumbnail);
             docImages.add(filePath);
         } else if (id == R.id.txtUpload) {
             String filename = filePath.substring(filePath.lastIndexOf("/") + 1);
@@ -349,7 +396,10 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
             case StaticUtils.REQUEST_SIGN_UP:
                 SignUpModel signUpModel = (SignUpModel) response;
                 sessionManager.setUserId(signUpModel.getResponseData().getIDriverId() + "");
-                PoupUtils.showAlertDailog(this, signUpModel.getResponseMessage());
+                Intent intent = new Intent(CarSignUpActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
                 break;
             case StaticUtils.REQUEST_CAR_CATEGORY:
                 CarCategoryModel categoryModel = (CarCategoryModel) response;
@@ -378,8 +428,6 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                     });
                 }
                 break;
-
-
             default:
                 break;
         }

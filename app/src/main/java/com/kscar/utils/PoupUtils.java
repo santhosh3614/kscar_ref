@@ -77,7 +77,8 @@ public class PoupUtils {
         dialog.show();
     }
 
-    public static void showCarCategory(Activity activity, String message,
+    public static void showCarCategory(Activity activity,
+                                       String message,
                                        List<CarCategoryModel.ResponseDatum> responseData,
                                        RvClickListeners rvClickListeners) {
 
@@ -88,7 +89,8 @@ public class PoupUtils {
         dialog.setContentView(R.layout.layout_category_car);
         RecyclerView rvCarList = dialog.findViewById(R.id.rvCarList);
         rvCarList.setLayoutManager(new LinearLayoutManager(activity));
-        CarCategoryAdapter carCategoryAdapter = new CarCategoryAdapter(activity, responseData, (v, pos) -> {
+        CarCategoryAdapter carCategoryAdapter = new CarCategoryAdapter(activity, responseData,
+                (v, pos) -> {
             rvClickListeners.onItemclick(v, pos);
             dialog.cancel();
         });
@@ -98,9 +100,7 @@ public class PoupUtils {
         dialog.show();
     }
 
-
     public static void showAlertDailog(Activity activity, String message) {
-
         final Dialog dialog = new Dialog(activity, android.R.style.Theme_Black_NoTitleBar_Fullscreen);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawableResource(R.color.black_tran_30);

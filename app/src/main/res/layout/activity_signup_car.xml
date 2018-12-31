@@ -1,390 +1,383 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_above="@+id/llBelow"
-    android:layout_alignParentTop="true"
-    android:overScrollMode="never">
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/imgProfile"
-            android:layout_width="@dimen/_75sdp"
-            android:layout_height="@dimen/_75sdp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@mipmap/ic_launcher"
-            android:visibility="gone" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_bold"
-            android:text="@string/register_your_car_"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/_20sdp" />
-
-        <TextView
-            android:id="@+id/txtSelectCarId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_7sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_7sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/right_arrow"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="center_vertical"
-            android:hint="@string/select_car_type"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-
-        <EditText
-            android:id="@+id/edtUserName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/user"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="center_vertical"
-            android:hint="User Name"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-
-        <EditText
-            android:id="@+id/edtCarNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/user"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="center_vertical"
-            android:hint="@string/enter_car_no"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/edtCarModel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/email"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="center_vertical"
-            android:hint="@string/enter_car_model"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/edtMobile"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/mobile"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="center_vertical"
-            android:hint="@string/mobile"
-            android:inputType="number"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/edtLicenceNo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/mobile"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="center_vertical"
-            android:hint="@string/licence_no"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/txtState"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/state"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/right_arrow"
-            android:fontFamily="@font/opensans_regular"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/select_car"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-
-        <TextView
-            android:id="@+id/txtCity"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_edit_text"
-            android:drawableLeft="@drawable/state"
-            android:drawablePadding="@dimen/_10sdp"
-            android:drawableRight="@drawable/right_arrow"
-            android:fontFamily="@font/opensans_regular"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/_10sdp"
-            android:text="@string/select_city"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
-
-
-        <EditText
-            android:id="@+id/edtAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:layout_marginBottom="@dimen/_8sdp"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_8sdp"
-            android:background="@drawable/bg_text_area"
-            android:drawablePadding="@dimen/_10sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:gravity="top"
-            android:hint="Address"
-            android:lines="3"
-            android:padding="@dimen/_10sdp"
-            android:textColor="@color/gray_text_color"
-            android:textColorHint="@color/gray_text_color"
-            android:textSize="16sp" />
+        android:layout_above="@+id/txtSubmit"
+        android:layout_alignParentTop="true"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgProfile"
+                android:layout_width="@dimen/_75sdp"
+                android:layout_height="@dimen/_75sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:background="@mipmap/ic_launcher"
+                android:visibility="gone" />
 
             <TextView
-                android:id="@+id/txtUpload"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_blue_button"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/register_your_car_"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/_20sdp" />
+
+            <TextView
+                android:id="@+id/txtSelectCarId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/car_icon"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/arrow"
                 android:fontFamily="@font/opensans_regular"
-                android:paddingBottom="@dimen/_10sdp"
-                android:paddingLeft="@dimen/_30sdp"
-                android:paddingRight="@dimen/_30sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:text="Uplaod Doc"
-                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:hint="@string/select_car_type"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
                 android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/txtFileName"
-                android:layout_width="wrap_content"
+
+            <EditText
+                android:id="@+id/edtUserName"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/user"
+                android:drawablePadding="@dimen/_10sdp"
                 android:fontFamily="@font/opensans_regular"
-                android:text="@string/no_selected_file_" />
-
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/_10sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:orientation="horizontal">
-
-            <RelativeLayout
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:background="@drawable/bg_plus_image">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/img1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:riv_corner_radius="@dimen/_15sdp"
-                    app:riv_mutate_background="true"
-                    app:riv_tile_mode="repeat">
-
-                </com.makeramen.roundedimageview.RoundedImageView>
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="@drawable/bg_plus_image">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/img2"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:riv_corner_radius="@dimen/_15sdp"
-                    app:riv_mutate_background="true"
-                    app:riv_tile_mode="repeat" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="@drawable/bg_plus_image">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/img3"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:riv_corner_radius="@dimen/_15sdp"
-                    app:riv_mutate_background="true"
-                    app:riv_tile_mode="repeat" />
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="@dimen/_60sdp"
-                android:layout_height="@dimen/_60sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
-                android:background="@drawable/bg_plus_image">
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:src="@drawable/ic_add" />
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/img4"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="fitXY"
-                    app:riv_corner_radius="@dimen/_15sdp"
-                    app:riv_mutate_background="true"
-                    app:riv_tile_mode="repeat" />
-
-            </RelativeLayout>
-
-        </LinearLayout>
-
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_20sdp"
-            android:layout_marginRight="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp">
-
-
-            <TextView
-                android:id="@+id/txtSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:background="@drawable/bg_yello_button"
-                android:fontFamily="@font/opensans_regular"
-                android:paddingBottom="@dimen/_10sdp"
-                android:paddingLeft="@dimen/_30sdp"
-                android:paddingRight="@dimen/_30sdp"
-                android:paddingTop="@dimen/_10sdp"
-                android:text="Submit"
-                android:textColor="@color/white"
+                android:gravity="center_vertical"
+                android:hint="User Name"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
                 android:textSize="16sp" />
-        </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_30sdp" />
 
 
-    </LinearLayout>
-</ScrollView>
+            <EditText
+                android:id="@+id/edtCarNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/car_icon"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_car_no"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
 
+            <EditText
+                android:id="@+id/edtCarModel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/car_icon"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/enter_car_model"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/mobile"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/mobile"
+                android:inputType="number"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/edtLicenceNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/lances"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="center_vertical"
+                android:hint="@string/licence_no"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/txtState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/state"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/arrow"
+                android:fontFamily="@font/opensans_regular"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/select_car"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
+
+
+            <TextView
+                android:id="@+id/txtCity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_edit_text"
+                android:drawableLeft="@drawable/city"
+                android:drawablePadding="@dimen/_10sdp"
+                android:drawableRight="@drawable/arrow"
+                android:fontFamily="@font/opensans_regular"
+                android:inputType="textEmailAddress"
+                android:padding="@dimen/_10sdp"
+                android:text="@string/select_city"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
+
+
+            <EditText
+                android:id="@+id/edtAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:layout_marginBottom="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginRight="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/bg_text_area"
+                android:drawablePadding="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_regular"
+                android:gravity="top"
+                android:hint="Address"
+                android:imeOptions="actionDone"
+                android:lines="3"
+                android:padding="@dimen/_10sdp"
+                android:scrollHorizontally="false"
+                android:textColor="@color/gray_text_color"
+                android:textColorHint="@color/gray_text_color"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtUpload"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_blue_button"
+                    android:fontFamily="@font/opensans_regular"
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingLeft="@dimen/_30sdp"
+                    android:paddingRight="@dimen/_30sdp"
+                    android:paddingTop="@dimen/_10sdp"
+                    android:text="Uplaod Doc"
+                    android:textColor="@color/white"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/txtFileName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:text="@string/no_selected_file_"
+                    android:textSize="10sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:background="@drawable/bg_plus_image">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/add" />
+
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY">
+
+                    </ImageView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@drawable/bg_plus_image">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/add" />
+
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@drawable/bg_plus_image">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/add" />
+
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:background="@drawable/bg_plus_image">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/add" />
+
+                    <ImageView
+                        android:id="@+id/img4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="fitXY" />
+
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <TextView
+        android:id="@+id/txtSubmit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:layout_marginLeft="@dimen/_20sdp"
+        android:layout_marginRight="@dimen/_20sdp"
+        android:background="@drawable/bg_yello_button"
+        android:fontFamily="@font/opensans_regular"
+        android:gravity="center"
+        android:paddingBottom="@dimen/_10sdp"
+        android:paddingLeft="@dimen/_30sdp"
+        android:paddingRight="@dimen/_30sdp"
+        android:paddingTop="@dimen/_10sdp"
+        android:text="Submit"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+
+</RelativeLayout>
