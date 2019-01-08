@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "869382758416",
+    "firebase_url": "https://kscar-15d77.firebaseio.com",
+    "project_id": "kscar-15d77",
+    "storage_bucket": "kscar-15d77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:869382758416:android:568fe49b8d68c893",
+        "android_client_info": {
+          "package_name": "com.kscar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "869382758416-u6kdnvc59o01kb1t6uvbes4cu4g2vsjl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kscar",
+            "certificate_hash": "b90fcdb0b18134e25f694c032ba8ec70ce210bc0"
+          }
+        },
+        {
+          "client_id": "869382758416-rbp8b3b2338r3bv4e0qeklbr9orq9f9e.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOQjYB1OoFuVpnVaNuSRQUUDuvUg_GoSg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "869382758416-rbp8b3b2338r3bv4e0qeklbr9orq9f9e.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
