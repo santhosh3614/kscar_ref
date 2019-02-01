@@ -278,7 +278,7 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
                 RequestBody txDriverAddress = RequestBody.create(MediaType.parse("text/plain"), address);
                 RequestBody vCity = RequestBody.create(MediaType.parse("text/plain"), city);
                 RequestBody vState = RequestBody.create(MediaType.parse("text/plain"), state);
-                RequestBody txDeviceToken = RequestBody.create(MediaType.parse("text/plain"), "as121adfdas");
+                RequestBody txDeviceToken = RequestBody.create(MediaType.parse("text/plain"), sessionManager.getNotificationToken());
                 RequestBody vDriverName = RequestBody.create(MediaType.parse("text/plain"), userName);
 
                 //Uplaod multiple image here:---

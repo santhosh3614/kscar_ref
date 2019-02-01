@@ -11,9 +11,9 @@ import android.widget.TextView;
 
 import com.kscar.R;
 import com.kscar.fragments.MyProfileFragment;
-import com.kscar.fragments.OnlieOffLineFragment;
 import com.kscar.fragments.OtpValdateFragment;
 import com.kscar.fragments.PaymetHistoryFragment;
+import com.kscar.prefrences.SessionManager;
 
 public class MainActivity extends BaseActivity {
 
@@ -21,8 +21,9 @@ public class MainActivity extends BaseActivity {
     private DrawerLayout drawer;
     public ImageView imgMenu, imgNotification, imgBack;
     public TextView txtTitle, txtTrip;
-
     private TextView txtPaymentHistoy, txtSupport, txtTermAndCond, txtRegisterCar, txtLogOut;
+    private SessionManager sessionManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,8 @@ public class MainActivity extends BaseActivity {
         txtLogOut = findViewById(R.id.txtLogOut);
         txtTitle = findViewById(R.id.txtTitle);
         txtTrip = findViewById(R.id.txtTrip);
+        sessionManager = new SessionManager(this);
+
 
         imgMenu.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.START);
