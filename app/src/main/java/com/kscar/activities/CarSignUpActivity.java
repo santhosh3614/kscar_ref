@@ -264,7 +264,6 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
             } else if (docImages.size() < 1) {
                 PoupUtils.showAlertDailog(this, "Selcect One Image.");
             } else {
-
                 progressDialog.show();
                 File file = new File(filePath);
                 RequestBody reqFile = RequestBody.create(MediaType.parse("image/*"), file);
@@ -361,9 +360,10 @@ public class CarSignUpActivity extends BaseActivity implements WsResponse {
             img4.setImageURI(picUri);
             docImages.add(filePath);
         } else if (id == R.id.txtUpload) {
+            docImages.add(filePath);
             String filename = filePath.substring(filePath.lastIndexOf("/") + 1);
             txtFileName.setText(filename);
-        }
+         }
     }
 
     private void onCaptureImageResult(Intent data) {

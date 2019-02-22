@@ -1,5 +1,8 @@
 package com.kscar.activities;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
@@ -8,11 +11,14 @@ import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.kscar.R;
 import com.kscar.fragments.MyProfileFragment;
 import com.kscar.fragments.OtpValdateFragment;
 import com.kscar.fragments.PaymetHistoryFragment;
+import com.kscar.notification.Config;
 import com.kscar.prefrences.SessionManager;
 
 public class MainActivity extends BaseActivity {
@@ -23,6 +29,7 @@ public class MainActivity extends BaseActivity {
     public TextView txtTitle, txtTrip;
     private TextView txtPaymentHistoy, txtSupport, txtTermAndCond, txtRegisterCar, txtLogOut;
     private SessionManager sessionManager;
+    private BroadcastReceiver mRegistrationBroadcastReceiver;
 
 
     @Override
@@ -52,6 +59,7 @@ public class MainActivity extends BaseActivity {
         txtTrip = findViewById(R.id.txtTrip);
         sessionManager = new SessionManager(this);
 
+        getNotifiactionWhenAppOpen();
 
         imgMenu.setOnClickListener(v -> {
             drawer.openDrawer(Gravity.START);
@@ -72,6 +80,27 @@ public class MainActivity extends BaseActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void getNotifiactionWhenAppOpen() {
+        mRegistrationBroadcastReceiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                if (intent.getAction().equals(Config.REGISTRATION_COMPLETE)) {
+                    FirebaseMessaging.getInstance().subscribeToTopic(Config.TOPIC_GLOBAL);
+                    displayFirebaseRegId();
+                } else if (intent.getAction().equals(Config.PUSH_NOTIFICATION)) {
+                    // new push notification is received
+                    String message = intent.getStringExtra("message");
+                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+                }
+            }
+        };
+    }
+
+    private void displayFirebaseRegId() {
+
+
     }
 
     private void defaultCall() {
